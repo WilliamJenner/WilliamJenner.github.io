@@ -21,7 +21,7 @@ import { SampleWorkAndSkillsRoute } from "./routes/SampleWorkAndSkillsRoute";
 import { AppContainer } from "./state/AppState";
 import { useStyles } from "./styles/Styles";
 
-export default function App() {
+const App = () => {
   const classes = useStyles();
   const theme = useTheme();
   const { appState, toggleDrawer } = AppContainer.useContainer();
@@ -72,17 +72,17 @@ export default function App() {
         </div>
         <Divider />
         <List>
-          {routeLabels.map((route) => (
+          {routeLabels.map(({ key, value, Icon }) => (
             <Link
-              to={route.value}
+              to={value}
               style={{ textDecoration: "none", color: "black" }}
-              key={route.key}
+              key={key}
             >
               <ListItem button>
                 <ListItemIcon>
-                  <route.Icon />
+                  <Icon />
                 </ListItemIcon>
-                <ListItemText primary={route.key} />
+                <ListItemText primary={key} />
               </ListItem>
             </Link>
           ))}
@@ -98,7 +98,7 @@ export default function App() {
           <Route path={Routes.Home}>
             <LandingRoute />
           </Route>
-          <Route path={Routes.SampleWorkAndSkills}>
+          <Route path={Routes.WorkAndSkills}>
             <SampleWorkAndSkillsRoute />
           </Route>
           <Route>
@@ -108,4 +108,6 @@ export default function App() {
       </main>
     </div>
   );
-}
+};
+
+export default App;
