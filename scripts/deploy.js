@@ -35,7 +35,11 @@ var buildDir = __dirname.replace("scripts", "build");
 
 ghpages.publish(
   buildDir,
-  { add: true, message: "gh-pages deploying site", branch: "master" },
+  {
+    add: true,
+    message: "Auto-generatec commit from gh-pages",
+    branch: "master",
+  },
   (err) => {
     if (err) {
       output.error(err);
