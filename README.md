@@ -1,1 +1,3 @@
-# WIP: CV/Profile website
+# WIP CV/Profile website
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
