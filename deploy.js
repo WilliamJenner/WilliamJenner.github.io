@@ -1,6 +1,7 @@
 const ghpages = require("gh-pages");
 const chalk = require("chalk");
-const packageJson = require("../package.json");
+const packageJson = require("./package.json");
+const path = require("path");
 
 const trim = (str) => str.replace(/^\s+|\s+$/gm, "");
 
@@ -31,10 +32,8 @@ const output = {
 
 output.starting();
 
-var buildDir = __dirname.replace("scripts", "build");
-
 ghpages.publish(
-  buildDir,
+  path.join(__dirname, "build"),
   {
     add: true,
     message: "Auto-generated commit from gh-pages",
