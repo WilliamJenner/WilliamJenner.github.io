@@ -3,7 +3,7 @@ const { redBright, yellowBright, greenBright } = require("chalk");
 const { homepage } = require("./package.json");
 const { join } = require("path");
 
-const buildDir = join(__dirname, "build");
+const trim = (str) => str.replace(/^\s+|\s+$/gm, "");
 
 const config = {
   add: true,
@@ -12,41 +12,32 @@ const config = {
   branch: "master",
 };
 
-const trim = (str) => str.replace(/^\s+|\s+$/gm, "");
-
-const output = {
-  starting: () => {
-    const text = trim(`
-          =========================
-          GitHub Pages Deploy Script
-          =========================
-          > Publishing to Branch: ${config.branch}...
-      `);
-
-    console.log(yellowBright(text));
-  },
+const { starting, error, success } = {
+  starting: () =>
+    console.log(
+      yellowBright(
+        trim(`
+    =========================
+    GitHub Pages Deploy Script
+    =========================
+    > Publishing to Branch: ${config.branch}...`)
+      )
+    ),
   error: (ex) => {
-    if (typeof ex !== "object") {
-      console.log(redBright(ex));
-      throw new Error(ex);
-    }
-
-    console.log(redBright(ex.message));
+    console.log(redBright(JSON.stringify(ex)));
     throw ex;
   },
-  success: (msg) => {
-    console.log(greenBright(msg));
-  },
+  success: (msg) => console.log(greenBright(msg)),
 };
 
 const handlePublishResult = (ex) => {
   if (ex) {
-    output.error(ex);
+    error(ex);
   } else {
-    output.success(`Success! Site hosted at ${homepage}`);
+    success(`Success! Site hosted at ${homepage}`);
   }
 };
 
-output.starting();
+starting();
 
-publish(buildDir, config, handlePublishResult);
+publish(join(__dirname, "build"), config, handlePublishResult);
