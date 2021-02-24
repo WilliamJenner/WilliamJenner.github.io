@@ -1,49 +1,51 @@
-const ghpages = require("gh-pages");
-const chalk = require("chalk");
-const packageJson = require("./package.json");
-const path = require("path");
+const { publish } = require("gh-pages");
+const { redBright, yellowBright, greenBright } = require("chalk");
+const { homepage } = require("./package.json");
+const { join } = require("path");
+
+const buildDir = join(__dirname, "build");
+
+const config = {
+  add: true,
+  message: "Auto-generated commit from gh-pages",
+  branch: "master",
+};
 
 const trim = (str) => str.replace(/^\s+|\s+$/gm, "");
 
 const output = {
-  starting: function () {
+  starting: () => {
     const text = trim(`
           =========================
-          Publishing GitHub Page
+          GitHub Pages Deploy Script
           =========================
-          > Publishing to: ${packageJson.homepage}...
+          > Publishing to Branch: ${config.branch}...
       `);
 
-    console.log(chalk.green(text));
+    console.log(yellowBright(text));
   },
-  error: function (ex) {
+  error: (ex) => {
     if (typeof ex !== "object") {
-      console.log(chalk.red(ex));
+      console.log(redBright(ex));
       throw new Error(ex);
     }
 
-    console.log(chalk.red(ex.message));
+    console.log(redBright(ex.message));
     throw ex;
   },
-  success: function (msg) {
-    console.log(chalk.green(msg));
+  success: (msg) => {
+    console.log(greenBright(msg));
   },
+};
+
+const handlePublishResult = (ex) => {
+  if (ex) {
+    output.error(ex);
+  } else {
+    output.success(`Success! Site hosted at ${homepage}`);
+  }
 };
 
 output.starting();
 
-ghpages.publish(
-  path.join(__dirname, "build"),
-  {
-    add: true,
-    message: "Auto-generated commit from gh-pages",
-    branch: "master",
-  },
-  (err) => {
-    if (err) {
-      output.error(err);
-    } else {
-      output.success("Successfully published GitHub Page.");
-    }
-  }
-);
+publish(buildDir, config, handlePublishResult);
