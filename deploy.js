@@ -7,7 +7,8 @@ const buildDir = join(__dirname, "build");
 
 const config = {
   add: true,
-  message: "Auto-generated commit from gh-pages",
+  message:
+    "feat(update): Auto-generated commit from gh-pages, see develop for non-built source files",
   branch: "master",
 };
 
