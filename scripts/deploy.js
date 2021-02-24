@@ -37,7 +37,7 @@ ghpages.publish(
   buildDir,
   {
     add: true,
-    message: "Auto-generatec commit from gh-pages",
+    message: "Auto-generated commit from gh-pages",
     branch: "master",
   },
   (err) => {
