@@ -5,7 +5,7 @@ import WorkIcon from "@material-ui/icons/Work";
 
 export enum Route {
   Home = "home",
-  SampleWorkAndSkills = "work-and-skills",
+  WorkAndSkills = "work-and-skills",
 }
 
 const shouldBeLowercase = ["and"];
@@ -14,7 +14,7 @@ const getIcon = (route: Route) => {
   switch (route) {
     case Route.Home:
       return HomeIcon;
-    case Route.SampleWorkAndSkills:
+    case Route.WorkAndSkills:
       return WorkIcon;
     default:
       return HomeIcon;
@@ -31,11 +31,10 @@ export const routeLabels: IRouteMap[] = Object.keys(Route).map(
   (route, index) => {
     var routeName = route
       .split(/(?=[A-Z])/)
-      .map((route) =>
-        shouldBeLowercase.indexOf(route.toLowerCase()) >= 0
-          ? route.toLowerCase()
-          : route
-      )
+      .map((route) => {
+        const routePart = route.toLowerCase();
+        return shouldBeLowercase.indexOf(routePart) >= 0 ? routePart : route;
+      })
       .join(" ")
       .trim();
     var routeVal = Object.values(Route)[index] as Route;
