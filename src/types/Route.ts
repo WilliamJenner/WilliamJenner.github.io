@@ -1,8 +1,3 @@
-import { SvgIconTypeMap } from "@material-ui/core";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import HomeIcon from "@material-ui/icons/Home";
-import WorkIcon from "@material-ui/icons/Work";
-
 export enum Route {
   Home = "home",
   WorkAndSkills = "work-and-skills",
@@ -13,18 +8,17 @@ const shouldBeLowercase = ["and"];
 const getIcon = (route: Route) => {
   switch (route) {
     case Route.Home:
-      return HomeIcon;
+      return "HomeIcon";
     case Route.WorkAndSkills:
-      return WorkIcon;
+      return "WorkIcon";
     default:
-      return HomeIcon;
+      return "HomeIcon";
   }
 };
 
 interface IRouteMap {
   key: string;
   value: Route;
-  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 }
 
 export const routeLabels: IRouteMap[] = Object.keys(Route).map(
