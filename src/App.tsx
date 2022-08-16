@@ -1,10 +1,14 @@
-import "xp.css/dist/XP.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import HomePage from "./components/HomePage";
 import "./styles/index.css";
 
 const App = () => {
+  const queryClient = new QueryClient();
   return (
     <>
-      <p className="text-4xl">ello worl</p>
+      <QueryClientProvider client={queryClient}>
+        <HomePage />
+      </QueryClientProvider>
     </>
   );
 };
