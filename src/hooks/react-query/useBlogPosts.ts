@@ -19,14 +19,14 @@ const useBlogPosts = (props: IUseBlogPostsParams): IUseBlogPosts => {
     try {
       var response = await fetch(url.toString(), {
         method: "GET",
-        mode: "no-cors",
+        mode: "cors",
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
       });
 
       const data = await response.text();
-      console.log(data);
+
       if (response.ok) {
         let t = JSON.parse(data);
 
