@@ -1,10 +1,12 @@
-import React from "react";
 import "xp.css/dist/XP.css";
-import Window from "./assets/components/Window";
-import "./assets/styles/index.scss";
+import "./styles/index.css";
 
 const App = () => {
-  return <Window />;
+  return (
+    <>
+      <p className="text-4xl">ello worl</p>
+    </>
+  );
 };
 
 export default App;
