@@ -12,7 +12,7 @@ interface IPaginationProps {
 const Pagination = (props: IPaginationProps) => {
   return (
     <div className="flex flex-row gap-2">
-      Current page: {props.currentPage + 1} of {props.totalPages}
+      Current page: {props.currentPage + 1} of {props.totalPages + 1}
       <select
         onChange={(event) => {
           props.onPageChange(Number(event.target.value) - 1);

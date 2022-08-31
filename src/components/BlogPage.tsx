@@ -23,6 +23,7 @@ const BlogPage = (props: IBlogPageProps) => {
                 {dayjs(query.data?.timeStamp).format("DD/MM/YYYY")}
               </time>
             </p>
+            <p>{query.data?.teaser}</p>
           </header>
           <ReactMarkdown children={query?.data?.content ?? ""} />
         </article>
