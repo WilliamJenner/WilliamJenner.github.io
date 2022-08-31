@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { BlogPostTeaser } from "../types/BlogPostTeaser";
+import { BlogPost } from "../types/BlogPost";
 
 interface IBlogPostTeaserProps {
-  blogPost: BlogPostTeaser;
+  blogPost: BlogPost;
 }
 
 const BlogPostThumbnail = (props: IBlogPostTeaserProps) => {

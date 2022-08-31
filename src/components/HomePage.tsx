@@ -1,15 +1,36 @@
+import { useEffect } from "react";
 import useBlogPosts from "../hooks/react-query/useBlogPostTeasers";
 import usePagination from "../hooks/usePagination";
 import BlogPostTeaser from "./BlogPostThumbnail";
+import Pagination from "./Pagination";
 
 interface IHomePageProps {}
 
 const HomePage = (props: IHomePageProps) => {
-  const { page, pageSize } = usePagination({
+  const {
+    page,
+    pageSize,
+    totalPages,
+    order,
+    updatePage,
+    updateTotalSize,
+    hasPage,
+    setOrder,
+  } = usePagination({
     initialPage: 0,
     initialPageSize: 10,
+    intitialOrder: "asc",
   });
-  const x = useBlogPosts({ page, pageSize });
+
+  const { query: blogPostsQuery } = useBlogPosts({
+    page,
+    pageSize,
+    order: order,
+  });
+
+  useEffect(() => {
+    updateTotalSize(blogPostsQuery.data?.totalSize ?? 0);
+  }, [blogPostsQuery.data?.totalSize]);
 
   return (
     <>
@@ -23,17 +44,23 @@ const HomePage = (props: IHomePageProps) => {
         </header>
 
         <div className="grid grid-cols-3 gap-8 my-2">
-          {x.query.data?.map((post) => (
+          {blogPostsQuery.data?.blogs.map((post) => (
             <BlogPostTeaser blogPost={post} key={post.id} />
           ))}
         </div>
 
-        <button> {"<"} </button>
-        <button className="bg-blue-200">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button> {">"} </button>
+        <Pagination
+          currentPage={page}
+          hasPage={hasPage}
+          totalPages={totalPages}
+          order={order}
+          onPageChange={(page) => {
+            updatePage(page);
+          }}
+          onOrderChange={(order) => {
+            setOrder(order);
+          }}
+        />
       </section>
     </>
   );

@@ -1,6 +1,6 @@
+import { BlogPost } from "./BlogPost";
+
 export type BlogPostTeaser = {
-  id: string;
-  title: string;
-  teaser: string;
-  timeStamp: Date;
+  totalSize: number;
+  blogs: Array<BlogPost>;
 };
