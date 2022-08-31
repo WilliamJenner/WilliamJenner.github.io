@@ -1,10 +1,15 @@
 import useBlogPosts from "../hooks/react-query/useBlogPosts";
+import usePagination from "../hooks/usePagination";
 import BlogPostTeaser from "./BlogPostTeaser";
 
 interface IHomePageProps {}
 
 const HomePage = (props: IHomePageProps) => {
-  const x = useBlogPosts({ page: 0, pageSize: 10 });
+  const { page, pageSize } = usePagination({
+    initialPage: 0,
+    initialPageSize: 10,
+  });
+  const x = useBlogPosts({ page, pageSize });
 
   return (
     <>

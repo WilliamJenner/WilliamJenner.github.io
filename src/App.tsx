@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import BlogPage from "./components/BlogPage";
 import HomePage from "./components/HomePage";
 import "./styles/index.css";
@@ -7,7 +7,7 @@ import "./styles/index.css";
 const App = () => {
   const queryClient = new QueryClient();
   return (
-    <BrowserRouter>
+    <HashRouter>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path={"/"}>
@@ -18,7 +18,7 @@ const App = () => {
           </Route>
         </Routes>
       </QueryClientProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

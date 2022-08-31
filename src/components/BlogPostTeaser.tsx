@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 import { BlogPostDto } from "../types/BlogPostDto";
 
 interface IBlogPostTeaserProps {
@@ -12,9 +13,9 @@ const BlogPostTeaser = (props: IBlogPostTeaserProps) => {
     <article className="border-solid border-black border-2">
       <header>
         <h3 className="text-xl">
-          <a href={`blog/${props.blogPost.id}`} className={"hover:underline"}>
+          <Link to={`/blog/${props.blogPost.id}`} className={"hover:underline"}>
             {props.blogPost.title}
-          </a>
+          </Link>
         </h3>
         <span className="italic text-sm">
           Published{" "}
