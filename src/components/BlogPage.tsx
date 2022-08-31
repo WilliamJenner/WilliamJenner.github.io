@@ -17,9 +17,7 @@ const BlogPage = (props: IBlogPageProps) => {
             <h1>{query.data?.title}</h1>
             <p>
               Published on{" "}
-              <time
-                dateTime={dayjs(query.data?.timeStamp).format("YYYY-MM-DD")}
-              >
+              <time dateTime={dayjs(query.data?.timeStamp).toISOString()}>
                 {dayjs(query.data?.timeStamp).format("DD/MM/YYYY")}
               </time>
             </p>
