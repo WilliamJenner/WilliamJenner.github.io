@@ -52,12 +52,12 @@ const HomePage = (props: IHomePageProps) => {
         <p>Right now this website is under construction.</p>
       </section>
 
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2 md:gap-4">
         <header>
           <h2 className="text-2xl">Blog posts</h2>
         </header>
 
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-4">
           {blogPostsQuery.data?.blogs?.map((post) => (
             <BlogPostTeaser blogPost={post} key={post.id} />
           ))}

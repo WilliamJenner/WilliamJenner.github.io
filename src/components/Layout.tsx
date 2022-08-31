@@ -27,6 +27,13 @@ const Layout = (props: ILayoutProps) => {
           <a className="underline" href="https://github.com/WilliamJenner">
             GitHub
           </a>
+          {" | "}
+          <a
+            className="underline"
+            href="https://github.com/WilliamJenner/williamjenner.github.io"
+          >
+            Source
+          </a>
         </address>
       </footer>
     </div>
