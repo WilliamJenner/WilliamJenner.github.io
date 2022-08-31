@@ -10,7 +10,7 @@ const BlogPostThumbnail = (props: IBlogPostTeaserProps) => {
   const datePublished = dayjs(props.blogPost.timeStamp);
 
   return (
-    <article className="border-solid border-black border-2">
+    <article className="border-solid border-black border p-2 md:p-4">
       <header>
         <h3 className="text-xl">
           <Link to={`/blog/${props.blogPost.id}`} className={"hover:underline"}>

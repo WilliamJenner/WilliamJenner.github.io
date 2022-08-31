@@ -34,8 +34,11 @@ const HomePage = (props: IHomePageProps) => {
 
   return (
     <>
-      <section>
-        <p>Welcome to blog</p>
+      <section className="mb-4">
+        <header>
+          <h2 className="text-2xl">About me</h2>
+        </header>
+        <p>Im will</p>
       </section>
 
       <section>
@@ -43,7 +46,7 @@ const HomePage = (props: IHomePageProps) => {
           <h2 className="text-2xl">Blog posts</h2>
         </header>
 
-        <div className="grid grid-cols-3 gap-8 my-2">
+        <div className="grid grid-cols-2 gap-8 my-2">
           {blogPostsQuery.data?.blogs.map((post) => (
             <BlogPostTeaser blogPost={post} key={post.id} />
           ))}
