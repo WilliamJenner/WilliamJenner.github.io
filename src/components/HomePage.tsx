@@ -33,20 +33,31 @@ const HomePage = (props: IHomePageProps) => {
   }, [blogPostsQuery.data?.totalSize]);
 
   return (
-    <>
-      <section className="mb-4">
+    <div className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2">
         <header>
           <h2 className="text-2xl">About me</h2>
         </header>
-        <p>Im will</p>
+        <p>
+          Hi, I'm Will. I'm a fullstack Software Engineer. Day to day I work
+          with the web.
+        </p>
+        <p>I work with technologies such as:</p>
+        <ul className="list-disc pl-6">
+          <li>React</li>
+          <li>C# / ASP.NetCore / Net 6.0</li>
+          <li>TypeScript</li>
+          <li>SQL</li>
+        </ul>
+        <p>Right now this website is under construction.</p>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <header>
           <h2 className="text-2xl">Blog posts</h2>
         </header>
 
-        <div className="grid grid-cols-2 gap-8 my-2">
+        <div className="grid grid-cols-2 gap-8">
           {blogPostsQuery.data?.blogs.map((post) => (
             <BlogPostTeaser blogPost={post} key={post.id} />
           ))}
@@ -65,7 +76,7 @@ const HomePage = (props: IHomePageProps) => {
           }}
         />
       </section>
-    </>
+    </div>
   );
 };
 
