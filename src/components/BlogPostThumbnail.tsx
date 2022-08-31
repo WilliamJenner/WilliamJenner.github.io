@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { BlogPostDto } from "../types/BlogPostDto";
+import { BlogPostTeaser } from "../types/BlogPostTeaser";
 
 interface IBlogPostTeaserProps {
-  blogPost: BlogPostDto;
+  blogPost: BlogPostTeaser;
 }
 
-const BlogPostTeaser = (props: IBlogPostTeaserProps) => {
+const BlogPostThumbnail = (props: IBlogPostTeaserProps) => {
   const datePublished = dayjs(props.blogPost.timeStamp);
 
   return (
@@ -25,9 +25,9 @@ const BlogPostTeaser = (props: IBlogPostTeaserProps) => {
         </span>
       </header>
 
-      <p>{props.blogPost.content?.substring(0, 45)}...</p>
+      <p>{props?.blogPost?.teaser}</p>
     </article>
   );
 };
 
-export default BlogPostTeaser;
+export default BlogPostThumbnail;

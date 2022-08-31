@@ -1,11 +1,34 @@
+import dayjs from "dayjs";
+import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
+import useBlogPost from "../hooks/react-query/useBlogPost";
 
 interface IBlogPageProps {}
 
 const BlogPage = (props: IBlogPageProps) => {
-  let { id } = useParams();
+  const { id } = useParams();
+  const { query } = useBlogPost({ id: id ?? "" });
 
-  return <div>{id}</div>;
+  return (
+    <>
+      {query.isFetched && (
+        <article className="prose prose-slate">
+          <header>
+            <h1>{query.data?.title}</h1>
+            <p>
+              Published on{" "}
+              <time
+                dateTime={dayjs(query.data?.timeStamp).format("YYYY-MM-DD")}
+              >
+                {dayjs(query.data?.timeStamp).format("DD/MM/YYYY")}
+              </time>
+            </p>
+          </header>
+          <ReactMarkdown children={query?.data?.content ?? ""} />
+        </article>
+      )}
+    </>
+  );
 };
 
 export default BlogPage;

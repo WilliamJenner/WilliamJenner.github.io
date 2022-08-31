@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { BlogPostDto } from "../../types/BlogPostDto";
+import { BlogPostTeaser } from "../../types/BlogPostTeaser";
 
 export interface IUseBlogPostsParams {
   page: number;
@@ -7,15 +7,15 @@ export interface IUseBlogPostsParams {
 }
 
 interface IUseBlogPosts {
-  query: UseQueryResult<Array<BlogPostDto>, Error>;
+  query: UseQueryResult<Array<BlogPostTeaser>, Error>;
 }
 
-const useBlogPosts = (props: IUseBlogPostsParams): IUseBlogPosts => {
-  const url = new URL("https://willjenner.azurewebsites.net/api/GetPosts");
+const useBlogPostTeasers = (props: IUseBlogPostsParams): IUseBlogPosts => {
+  const url = new URL("https://willjenner.azurewebsites.net/api/GetTeasers");
   url.searchParams.append("page", props.page.toString());
   url.searchParams.append("size", props.pageSize.toString());
 
-  const fetchBlog = async (): Promise<Array<BlogPostDto>> => {
+  const fetchBlog = async (): Promise<Array<BlogPostTeaser>> => {
     try {
       var response = await fetch(url.toString(), {
         method: "GET",
@@ -30,7 +30,7 @@ const useBlogPosts = (props: IUseBlogPostsParams): IUseBlogPosts => {
       if (response.ok) {
         let t = JSON.parse(data);
 
-        return t as Array<BlogPostDto>;
+        return t as Array<BlogPostTeaser>;
       } else throw new Error("No result");
     } catch (e) {
       console.log(e);
@@ -38,12 +38,12 @@ const useBlogPosts = (props: IUseBlogPostsParams): IUseBlogPosts => {
     }
   };
 
-  const query = useQuery<Array<BlogPostDto>, Error>(
-    ["blog", props.page, props.pageSize],
+  const query = useQuery<Array<BlogPostTeaser>, Error>(
+    ["blog-teasers", props.page, props.pageSize],
     fetchBlog
   );
 
   return { query };
 };
 
-export default useBlogPosts;
+export default useBlogPostTeasers;
