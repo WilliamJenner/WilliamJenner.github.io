@@ -58,7 +58,7 @@ const HomePage = (props: IHomePageProps) => {
         </header>
 
         <div className="grid grid-cols-2 gap-8">
-          {blogPostsQuery.data?.blogs.map((post) => (
+          {blogPostsQuery.data?.blogs?.map((post) => (
             <BlogPostTeaser blogPost={post} key={post.id} />
           ))}
         </div>

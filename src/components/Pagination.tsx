@@ -19,7 +19,7 @@ const Pagination = (props: IPaginationProps) => {
         }}
         value={props.currentPage + 1}
       >
-        {Array.from(Array(props.totalPages).keys()).map((key) => {
+        {Array.from(Array(props.totalPages).keys())?.map((key) => {
           return (
             <option
               key={key + 1}
