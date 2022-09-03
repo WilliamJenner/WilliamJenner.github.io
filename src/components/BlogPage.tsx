@@ -14,7 +14,7 @@ const BlogPage = (props: IBlogPageProps) => {
   return (
     <>
       {query.isFetched && (
-        <article className="prose-lg prose-slate dark:prose-invert">
+        <article className="prose md:prose-lg prose-slate dark:prose-invert">
           <header className="border-b mb-4">
             <h1>{query.data?.title}</h1>
             <p>
