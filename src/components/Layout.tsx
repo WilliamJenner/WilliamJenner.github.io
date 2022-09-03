@@ -7,7 +7,7 @@ const Layout = (props: ILayoutProps) => {
     <div className="flex flex-col gap-4 h-screen justify-between container mx-auto px-4 py-2 sm:px-6 sm:py-4 md:px-8">
       <header>
         <h1 className="text-4xl">
-          <Link to={"/"}>willjenner.uk</Link>
+          <Link to={"/"}>willjenner.co.uk</Link>
         </h1>
       </header>
 

@@ -9,16 +9,18 @@ const BlogPage = (props: IBlogPageProps) => {
   const { id } = useParams();
   const { query } = useBlogPost({ id: id ?? "" });
 
+  const datePublished = dayjs(query.data?.timeStamp);
+
   return (
     <>
       {query.isFetched && (
-        <article className="prose prose-slate dark:prose-invert">
-          <header>
+        <article className="prose-lg prose-slate dark:prose-invert">
+          <header className="border-b mb-4">
             <h1>{query.data?.title}</h1>
             <p>
               Published on{" "}
-              <time dateTime={dayjs(query.data?.timeStamp).toISOString()}>
-                {dayjs(query.data?.timeStamp).format("DD/MM/YYYY")}
+              <time dateTime={datePublished.toISOString()}>
+                {datePublished.format("DD/MM/YYYY")}
               </time>
             </p>
             <p>{query.data?.teaser}</p>
